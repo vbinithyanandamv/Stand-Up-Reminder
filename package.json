@@ -1,0 +1,15 @@
+{
+  "name": "standup",
+  "version": "1.0.0",
+  "description": "Stand Up",
+  "main": "index.js",
+    "scripts": {
+      "start": "electron ."
+    },
+  "author": "Nithyanandam",
+  "license": "MIT",
+  "devDependencies": {
+    "electro": "^2.1.1",
+    "electron": "^18.0.1"
+  }
+}

@@ -1,0 +1,51 @@
+<!--index.html-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'"> -->
+    <!-- <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'"> -->
+    <title>Stand up</title>
+  </head>
+  <body>
+    <div>
+        <label>Duration</label>
+    <input type="number" min="1" max="60" id='duration' value="5" oninput="handleInputChange()">
+   </div>
+   <div>
+       <label>Video</label>
+       <input id="source" type="string" value="http://www.youtube.com/embed/O_G6y6OuRPA">
+   </div>
+   <div>
+    <iframe  id="video" width="420" height="345" src="" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <!-- You can also require other files to run in this process -->
+    <script src="./renderer.js"></script>
+  </body>
+  <script>
+    let interval = '';
+    function getUserSetting(){
+       let value = document.getElementById('duration').value;
+       interval = setInterval(standUp, value * 60000 );
+    }
+    getUserSetting();
+    
+    // let value = document.getElementById('duration').value;
+    // setInterval(standUp, 1000 * value * 60000 );
+    
+    function standUp() {
+        let Iframe = document.getElementById('video');
+        let video = document.getElementById('source').value;
+        Iframe.src = video+'?autoplay=1'
+    }
+
+    function handleInputChange() {
+        clearInterval(interval);
+        getUserSetting();
+        standUp();
+    }
+  </script>
+</html>
